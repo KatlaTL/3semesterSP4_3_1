@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Start Page</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        <div id="quote"></div>
+        <button id="btn">Click me</button>
+        <script>
+            var btn = document.getElementById("btn");
+            btn.addEventListener("click",function(){
+                var url = "http://localhost:8084/JasonDemon2/quoteControl";
+                var conf = {method: "get"};
+                var promise = fetch(url, conf);
+                promise.then(function(response){
+                    return response.text();
+                }).then(function(text){
+                    document.getElementById("quote").innerText = text;
+                });
+            });
+            setInterval(function(){
+                var url = "http://localhost:8084/JasonDemon2/quoteControl";
+                var conf = {method: "get"};
+                var promise = fetch(url, conf);
+                promise.then(function(response){
+                    return response.text();
+                }).then(function(text){
+                    document.getElementById("quote").innerText = text;
+                });
+            }, 3000);
+            
+        </script>
+    </body>
+</html>
